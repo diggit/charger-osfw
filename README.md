@@ -8,13 +8,13 @@ Those charger are clones or very similar: Turnigy Accucell, imax B6 and many non
 Those chargers have 16x2 character display, 4 buttons, integrated ballancer for lixx cells, anoying buzzer,...
 
 ### Why reinvent wheel?
-Well, original firmware is not so bad, but have some limitations. This charger is nice piece of hardware (I mean design, not quality). Original one, has limited calibration count to 1, not official specification of serial data stream and more.
+Well, original firmware is not so bad, but have some limitations. Original RF has: limited calibration count to 1, not official specification of serial data stream and more. This charger is nice piece of hardware (I mean design, not quality).
 What about conveting your charger into simple power supply, constant current load or just battery monitor?
 
 ### How can we do it?
-Whole charger is controlled by single, well known MicroCharm,ontroller Unit (MCU) AVR ATmega32. It is:
+Whole charger is controlled by single, well known MicroController Unit (MCU) AVR ATmega32. It is:
 * 8bit RISC MCU
-* running on 16MHz
+* running at 16MHz
 * 32kiB program FLASH
 * 2kiB SRAM
 * on chip 10bit ADC
