@@ -8,7 +8,7 @@ Those charger are clones or very similar: Turnigy Accucell, imax B6 and many non
 Those chargers have 16x2 character display, 4 buttons, integrated ballancer for lixx cells, anoying buzzer,...
 
 ### Why reinvent wheel?
-Well, original firmware is not so bad, but have some limitations. Original RF has: limited calibration count to 1, not official specification of serial data stream and more. This charger is nice piece of hardware (I mean design, not quality).
+Well, original firmware is not so bad, but have some limitations. Original FW: can be calibrated only once, has not official specification of serial data stream and more. This charger is nice piece of hardware (I mean design, not quality - sometimes really sucks).
 What about conveting your charger into simple power supply, constant current load or just battery monitor?
 
 ### How can we do it?
@@ -27,17 +27,23 @@ We are at the beginning. There is lot of work to do.
 That mean, you should not use code here if you are not keen developer and don't understand this code. You can fry your charger easily.
 
 ####TODO:
-| what														| who			| status
-|---------------------------------|---------|--------
-| func. to controll display				| diggit	| DONE
-| properly initialize harware			| diggit	| IP
-| decide, how to implement menu		|					|
-| func. to gather ADC vals				|					|
-| func to control DC-DC						|					|
-| func to manage balancer					|					|
-|	 | |
+| what				  | who 	| status
+|---------------------------------|-------------|--------
+| func. to controll display	  | diggit	| DONE		|
+| properly initialize harware	  | diggit	| DONE		|
+| decide, how to implement menu   | diggit	| DONE		|
+| func. to gather ADC vals	  | diggit	| DONE		|
+| claibration of ADC		  | diggit	| DONE for voltage, current cal. should be improved|
+| func to control DC-DC		  | diggit	| DONE		|
+| func to manage balance	  | diggit	| waiting	|
+| button status reading		  | diggit	| DONE		|
+| algorithm for charging	  | diggit	| waiting	|
+| power supply alg.		  | diggit	| IP - dummy voltage supply is working	|
+| uart output			  | diggit	| waiting	|
+|	 ||
 | exhausting testig								| all devs| ...
 
+I am moving forward slowly, studying on university is really time consuming.
 
 
 **You should know**, that we are not responsible for any harm or device lose by following this repository in any way!
