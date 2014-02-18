@@ -60,7 +60,7 @@
 #define E	(1<<Epin)
 #endif
 
-
+#include "misc.c"
 
 #define CMDinit	0b00111000
 #define CMDset	0b00001111
@@ -71,9 +71,9 @@
 #define BLINK	1
 
 
-uint8_t xpos=0,ypos=0;
+volatile uint8_t xpos=0,ypos=0;
 
-void _delay_us(unsigned long delay)//takes 8 cycles, at 16MHz means half of micro second (freq*time)/repeated
+void _delay_us(uint32_t delay)//takes 8 cycles, at 16MHz means half of micro second (freq*time)/repeated
 {
 	delay=delay<<1;//multiply by 2 to get 1uS delay
 	while(delay--) {_NOP;_NOP;}
@@ -107,6 +107,16 @@ void transmit(uint8_t data)
 	}
 	DPORT&=~(D4|D5|D6|D7);//vycisti port
 }
+
+void hd_clean()
+{
+	transmit(0x01);
+	_delay_us(1700);
+	xpos=0;
+	ypos=0;
+}
+
+#define hd_num(V,B,M) hd_str(itoa(V,B,M))
 
 
 void hd_goto(uint8_t X,uint8_t Y)
@@ -152,12 +162,13 @@ void hd_set(uint8_t state)
 
 void hd_newline()
 {
-	xpos=0;
 	ypos++;
-
 	if(!(ypos<Ymax))
 		ypos=0;
-	hd_goto(xpos,ypos);
+	hd_goto(0,ypos);
+	//hd_clean();
+	//hd_num(ypos,10,0);
+
 }
 
 
@@ -178,42 +189,8 @@ void hd_str(char *str)
 	{
 		if  (*str == '\n')
 			hd_newline();
-		hd_write(*str);//send character which is located on address called str here, *str gives valu (char) stored there
+		else
+			hd_write(*str);//send character which is located on address called str here, *str gives valu (char) stored there
 	}
-}
-
-void hd_clean()
-{
-	transmit(0x01);
-	_delay_us(1700);
-}
-
-void hd_num(int32_t num,uint8_t min)
-{
-	if(num<0)//sign
-	{
-		hd_write('-');
-		num=-num;
-	}
-	if(num>1000000000 || min>10)
-		hd_write('0'+num/1000000000);
-	if(num>100000000 || min>9)
-		hd_write('0'+num/100000000%10);
-	if(num>10000000 || min>8)
-		hd_write('0'+num/10000000%10);
-	if(num>1000000 || min>7)
-		hd_write('0'+num/1000000%10);
-	if(num>100000 || min>6)
-		hd_write('0'+num/100000%10);
-	if(num>10000 || min>5)
-		hd_write('0'+num/10000%10);
-	if(num>1000 || min>3)
-		hd_write('0'+num/1000%10);
-	if(num>100 || min>2)
-		hd_write('0'+num/100%10);
-	if(num>10 || min>1)
-		hd_write('0'+num/10%10);
-	hd_write('0'+num%10);
-	//done	
 }
 
