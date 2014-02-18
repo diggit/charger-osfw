@@ -26,7 +26,7 @@ hex:  $(PRG).hex
 
 %.hex: %.elf
 	$(OBJCOPY) -j .text -j .data -O ihex $< $@
-	avr-size $(PRG).hex
+	avr-size -C --mcu=$(MCU_TARGET) $(PRG).elf
 
 install: load
 
