@@ -1,7 +1,10 @@
 charger-OsFw
 ============
 
-We (hope not only me) are trying to write opensource firmware for battery pack chargers based on AVR atmega32. 
+
+# project abandoned! [use cheali-charger instead](https://github.com/stawel/cheali-charger)
+
+We (hope not only me) are trying to write opensource firmware for battery pack chargers based on AVR atmega32.
 Those charger are clones or very similar: Turnigy Accucell, imax B6 and many noname ones.
 
 ### How to recognize clone?
@@ -23,7 +26,7 @@ Whole charger is controlled by single, well known MicroController Unit (MCU) AVR
 To program this chip, you only need: AVR toolchain to compile code and link binaries **(avr-gcc)**, hardware programmer (eg. **usbasp** or arduino), software for downloading program to chip flash **(avrdude)**.
 
 ### progress?
-We are at the beginning. There is lot of work to do. 
+We are at the beginning. There is lot of work to do.
 That mean, you should not use code here if you are not keen developer and don't understand this code. You can fry your charger easily.
 
 ####TODO:
